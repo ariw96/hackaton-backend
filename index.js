@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const colors = require("colors");
+const scraper = require("./scraper/scraper");
 
 const cors = require("cors");
 const dotenv = require("dotenv").config();
@@ -16,5 +17,6 @@ app.use("/api/wordBank", require("./routes/wordBankRoute"));
 // app.use("/api/users", require("./routes/userRoutes"));
 
 app.use(errorHandler);
+scraper();
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

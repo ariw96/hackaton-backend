@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const axios = require("axios");
 const hebrewToArabicInHebrewText = async (word) => {
 	const browser = await puppeteer.launch({
 		headless: true,
@@ -19,7 +20,7 @@ const hebrewToArabicInHebrewText = async (word) => {
 	return translatedWord;
 };
 
-const dictionaryScraper = async () => {
+const scraper = async () => {
 	const browser = await puppeteer.launch({
 		headless: true,
 	});
@@ -47,7 +48,7 @@ const dictionaryScraper = async () => {
 	});
 	// console.log(wordBank);
 	let newWordBank = [];
-	for (let i = 0; i < wordBank.length - 15; i++) {
+	for (let i = 0; i < wordBank.length; i++) {
 		await page.goto(
 			`https://rothfarb.info/ronen/arabic/?searchString=${wordBank[i].hebrew}`
 		);
@@ -56,16 +57,15 @@ const dictionaryScraper = async () => {
 
 			return tag?.innerText || "$";
 		});
-		newWordBank.push({
+		axios.post("http://localhost:8000/api/wordBank", {
 			arabic: wordBank[i].arabic,
 			hebrew: wordBank[i].hebrew,
-			arabicInHebrewText: wordBank[i].hebrewInArabicText,
-			hebrewInArabicText: grabWord,
+			Hspelling: grabWord,
+			Aspelling: wordBank[i].hebrewInArabicText,
 		});
-		console.log(newWordBank[i]);
+		console.log(grabWord);
 	}
-	console.log(newWordBank);
+
 	await browser.close();
-	return wordBank;
 };
-dictionaryScraper();
+module.exports = scraper;
