@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const {
-	getQuiz,
-	setQuiz,
-	updateQuiz,
-	deleteQuiz,
+	getWord,
+	setWord,
+	updateWord,
+	deleteWord,
 } = require("../controllers/wordsController");
 
-router.route("/").get(protect, getWordBank).post(protect, setWordBank);
-router.route("/:id").delete(protect, deleteWordBank).put(protect, updateWordBank);
+router.route("/").get(getWord).post(setWord);
+router.route("/:id").delete(deleteWord).put(updateWord);
 
 module.exports = router;
