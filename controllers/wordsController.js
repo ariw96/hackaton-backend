@@ -3,6 +3,7 @@ const WordBank = require('../models/wordsModel');
 
 // route GET /api/words
 
+
 const getWord = asyncHandler(async (req, res) => {
   try {
     const words = await WordBank.find();
@@ -15,6 +16,7 @@ const getWord = asyncHandler(async (req, res) => {
 // route POST /api/wordBank
 
 const setWord = asyncHandler(async (req, res) => {
+
   const wordData = req.body.wordData;
   try {
     wordData.forEach(async (word) => {
@@ -31,6 +33,7 @@ const setWord = asyncHandler(async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'internal server error.' });
   }
+
 });
 // des update word
 // route PUT /api/word/:id
@@ -61,8 +64,10 @@ const deleteWord = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+
   getWord,
   setWord,
   updateWord,
   deleteWord,
+
 };
