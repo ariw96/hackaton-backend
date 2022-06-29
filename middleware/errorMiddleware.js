@@ -12,12 +12,3 @@ const errorHandler = (err, req, res, next) => {
 module.exports = {
 	errorHandler,
 };
-export const words = [
-	{
-		hebrew: "בית ספר",
-		arabic: "مدرسة",
-		Hspelling: "מה-דרה-סה", // Hebrew pronounciation in english letters
-		Aspelling: "بيت-سيفر", // Arabic pronounciation in english letters,
-		id: "som id here",
-	},
-];
