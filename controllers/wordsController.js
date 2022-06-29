@@ -3,15 +3,15 @@ const WordBank = require("../models/wordsModel");
 
 // route GET /api/words
 
-const getWord = asyncHandler(async (req, res) => {
-	const word = await WordBank.find({ user: req.user.id });
-	res.status(200).json(word);
+const getWords = asyncHandler(async (req, res) => {
+	const words = await WordBank.find();
+	res.status(200).json(words);
 });
 
 // route POST /api/words
 
 const setWord = asyncHandler(async (req, res) => {
-	const { hebrew, arabic, Hspelling, Aspelling } = req.body.wordData;
+	const { hebrew, arabic, Hspelling, Aspelling } = req.body;
 	if (!wordName) {
 		throw new Error("Please provide a text");
 	}
@@ -53,7 +53,7 @@ const deleteWord = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-	getWord,
+	getWords,
 	setWord,
 	updateWord,
 	deleteWord,

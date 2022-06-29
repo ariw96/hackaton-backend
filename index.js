@@ -14,18 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/wordBank", require("./routes/wordBankRoute"));
 // app.use("/api/users", require("./routes/userRoutes"));
-//serve frontend
-// if (process.env.NODE_ENV === "production") {
-// 	app.use(express.static(path.join(__dirname, "../client/build")));
-// 	app.get("*", (req, res) => {
-// 		res.sendFile(
-// 			path.resolve(__dirname, "../", "client", "build", "index.html")
-// 		);
-// 	});
-// }
-// } else {
-// 	app.get("/", (req, res) => res.send("please set NODE_ENV to production"));
-// }
+
 app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
